@@ -28,6 +28,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.btn_pictures)
     Button btn_pictures;
 
+    @Bind(R.id.old_camera)
+    Button old_camera;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void setListeners() {
         fab_camera.setOnClickListener(this);
         btn_pictures.setOnClickListener(this);
+        old_camera.setOnClickListener(this);
     }
 
 
@@ -64,6 +68,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         .setRequestCode(Define.ALBUM_REQUEST_CODE)
                         .startAlbum();
 
+                break;
+            case R.id.old_camera:
+                startActivity(new Intent(this, CameraActivity.class));
                 break;
         }
     }

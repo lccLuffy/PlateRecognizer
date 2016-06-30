@@ -21,11 +21,19 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/dawizards" />
 
         <Button
             android:id="@+id/btn_pictures"
@@ -34,7 +42,13 @@
             android:layout_gravity="center"
             android:text="图库" />
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/old_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="旧的相机" />
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_camera"
