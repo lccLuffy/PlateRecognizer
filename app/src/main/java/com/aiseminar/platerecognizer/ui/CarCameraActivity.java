@@ -5,10 +5,10 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -16,7 +16,6 @@ import com.aiseminar.platerecognizer.R;
 import com.aiseminar.util.L;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,6 +24,9 @@ public class CarCameraActivity extends AppCompatActivity implements SurfaceHolde
 
     @Bind(R.id.sfv_camera)
     SurfaceView sfv_camera;
+
+    @Bind(R.id.activity_car_camera)
+    View root;
 
 
     private Camera camera;
@@ -113,6 +115,18 @@ public class CarCameraActivity extends AppCompatActivity implements SurfaceHolde
     private void init() {
         surfaceHolder = sfv_camera.getHolder();
         surfaceHolder.addCallback(this);
+        root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                camera.autoFocus(new Camera.AutoFocusCallback() {
+                    @Override
+                    public void onAutoFocus(boolean success, Camera camera) {
+
+                    }
+                });
+            }
+        });
+
     }
 
     /**
@@ -144,6 +158,7 @@ public class CarCameraActivity extends AppCompatActivity implements SurfaceHolde
     public void surfaceCreated(SurfaceHolder holder) {
         try {
             camera.setPreviewDisplay(holder);
+            initCamera();
             camera.startPreview();
         } catch (IOException e) {
             toast(e.toString());
@@ -153,7 +168,23 @@ public class CarCameraActivity extends AppCompatActivity implements SurfaceHolde
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        Log.i("main", String.format(Locale.CHINA, "width:%d,height:%d", width, height));
+        camera.autoFocus(new Camera.AutoFocusCallback() {
+            @Override
+            public void onAutoFocus(boolean success, Camera camera) {
+                if (success) {
+                    initCamera();//实现相机的参数初始化
+                    camera.cancelAutoFocus();//只有加上了这一句，才会自动对焦。
+                }
+            }
+        });
+
+    }
+
+    private void initCamera() {
+        Camera.Parameters parameters = camera.getParameters();
+        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);//1连续对焦
+        camera.startPreview();
+        camera.cancelAutoFocus();
     }
 
     @Override

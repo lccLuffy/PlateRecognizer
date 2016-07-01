@@ -13,6 +13,8 @@ import android.widget.Button;
 
 import com.aiseminar.platerecognizer.R;
 import com.aiseminar.platerecognizer.base.BaseActivity;
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.define.Define;
 
@@ -31,6 +33,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.old_camera)
     Button old_camera;
 
+    @Bind(R.id.shimmer_tv)
+    ShimmerTextView shimmer_tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +48,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setListeners() {
+        old_camera.setVisibility(View.GONE);
         fab_camera.setOnClickListener(this);
         btn_pictures.setOnClickListener(this);
         old_camera.setOnClickListener(this);
+
+        Shimmer shimmer = new Shimmer();
+        shimmer.start(shimmer_tv);
     }
 
 

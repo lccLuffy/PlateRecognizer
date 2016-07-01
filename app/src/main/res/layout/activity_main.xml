@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,29 +26,53 @@
         android:id="@+id/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
             android:padding="5dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/dawizards" />
 
-        <Button
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:id="@+id/shimmer_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="DA wizards 车牌识别"
+            android:textColor="#444"
+            android:textSize="20dp"
+            android:typeface="serif" />
+
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/btn_pictures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="图库" />
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="从图库打开"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="?attr/colorPrimary"
+            fbutton:cornerRadius="2dp"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="2dp" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/old_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="旧的相机" />
+            android:layout_marginTop="50dp"
+            android:padding="5dp"
+            android:text="旧的相机"
+            fbutton:cornerRadius="2dp"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="1dp" />
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

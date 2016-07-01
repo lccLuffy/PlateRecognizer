@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_car_camera"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     tools:context="com.aiseminar.platerecognizer.ui.CarCameraActivity">
 
@@ -11,6 +12,15 @@
         android:id="@+id/sfv_camera"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/boder_draw"
+        android:padding="10dp"
+        android:text="未检测到车牌" />
 
     <ImageView
         android:layout_width="wrap_content"
